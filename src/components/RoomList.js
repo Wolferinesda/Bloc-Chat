@@ -4,6 +4,7 @@ class RoomList extends Component {
   constructor(props) {
     super(props);
     this.createRoom = this.createRoom.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.state = {
       rooms: [],
       newRoomName: ''
@@ -32,6 +33,10 @@ class RoomList extends Component {
       }
     }
 
+    handleChange(e) {
+      this.setState({newRoomName: e.target.value});
+    }
+
 
   render() {
     const roomForm = (
@@ -42,7 +47,7 @@ class RoomList extends Component {
           type="text"
           placeholder='New room'
           value={this.props.createRoom}
-          onChange={e => this.setState({newRoomName: 'new Room' })}
+          onChange={e => this.setState({newRoomName: this.handleChange })}
         />
         <br />
         <input
