@@ -5,6 +5,7 @@ class RoomList extends Component {
     super(props);
     this.createRoom = this.createRoom.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       rooms: [],
       newRoomName: ''
@@ -30,11 +31,16 @@ class RoomList extends Component {
         this.roomsRef.push({
           name: this.state.newRoomName
         });
+        e.target.reset();
       }
     }
 
     handleChange(e) {
       this.setState({newRoomName: e.target.value});
+    }
+
+    handleSubmit(e){
+
     }
 
 
@@ -47,7 +53,7 @@ class RoomList extends Component {
           type="text"
           placeholder='New room'
           value={this.props.createRoom}
-          onChange={e => this.setState({newRoomName: this.handleChange })}
+          onChange={this.handleChange}
         />
         <br />
         <input
