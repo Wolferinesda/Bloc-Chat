@@ -5,7 +5,6 @@ class RoomList extends Component {
     super(props);
     this.createRoom = this.createRoom.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       rooms: [],
       newRoomName: ''
@@ -24,25 +23,26 @@ class RoomList extends Component {
   }
 
   createRoom(e){
-      e.preventDefault();
-      if (this.state.newRoomName === ''){
-        alert('Name of New Room cannot be empty');
-      } else {
-        this.roomsRef.push({
-          name: this.state.newRoomName
-        });
-        e.target.reset();
-      }
+    e.preventDefault();
+    if (this.state.newRoomName === ''){
+      alert('Name of New Room cannot be empty');
+    } else {
+      this.roomsRef.push({
+        name: this.state.newRoomName
+      });
+      e.target.reset();
     }
+  }
+
+  deleteRoom(e){
+    e.preventDefault();
+    const room = this.props.firebase.database().ref("rooms");
+    room.remove();
+  }
 
     handleChange(e) {
       this.setState({newRoomName: e.target.value});
     }
-
-    handleSubmit(e){
-
-    }
-
 
   render() {
     const roomForm = (
