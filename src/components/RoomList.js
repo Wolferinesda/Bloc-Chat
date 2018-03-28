@@ -5,7 +5,6 @@ class RoomList extends Component {
     super(props);
     this.createRoom = this.createRoom.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       rooms: [],
       newRoomName: ''
@@ -39,10 +38,6 @@ class RoomList extends Component {
       this.setState({newRoomName: e.target.value});
     }
 
-    handleSubmit(e){
-
-    }
-
 
   render() {
     const roomForm = (
@@ -62,15 +57,15 @@ class RoomList extends Component {
         />
 
       </form>
-    )
+    );
 
     let room_list = this.state.rooms.map( (room, index) =>
-    <a href={room.name}>
+    <a href={room.name} key={index}>
       <li key={index}>
         {room.name}
       </li>
     </a>
-    )
+  );
 
 
     return (
