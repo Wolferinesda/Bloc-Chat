@@ -30,7 +30,8 @@ class RoomList extends Component {
         this.roomsRef.push({
           name: this.state.newRoomName
         });
-        e.target.reset();
+        this.setState({newRoomName: ''})
+        e.target.reset()
       }
     }
 
@@ -47,7 +48,6 @@ class RoomList extends Component {
         <input
           type="text"
           placeholder='New room'
-          value={this.props.createRoom}
           onChange={this.handleChange}
         />
         <br />
