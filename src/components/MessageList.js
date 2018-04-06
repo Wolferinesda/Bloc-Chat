@@ -5,8 +5,12 @@ class RoomList extends Component{
   constructor(props){
     super(props);
     this.state = {
+      username: "",
+      content: "",
+      sentAt: "",
+      roomId: "",
       messages: [],
-      newMessage: ''
+      newMessage: ""
     };
 
     this.messagesRef = this.props.firebase.database().ref('messages');
@@ -14,18 +18,26 @@ class RoomList extends Component{
 
   componentDidMount() {
     this.messagesRef.on('child_added', snapshot => {
-      const message = snapshot.val();
-      message.key = snapshot.key;
-      this.setState({ messages: this.state.messages.concat( message ) })
-      console.log(message);
-    });
+      messagesRef.on('value', snapshot => {
+      const messageChanges = [];
+      snapshot.forEach((message) => {
+          messageChanges.push({
+            key: message.key,
+            username: message.val().username,
+            content: message.val().content,
+            sentAt: message.val().sentAt,
+            updatedTime : message.val().updatedTime
+          });
+        }
+      });
+    }
   }
 
   render() {
 
     return(
       <div>
-      
+      Message
       </div>
     )
   }

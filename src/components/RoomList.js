@@ -10,7 +10,9 @@ class RoomList extends Component {
       newRoomName: ''
     };
     this.roomsRef = this.props.firebase.database().ref('rooms');
-
+    this.roomsRef.on('child_removed', snapshot  => {
+      this.setState({ rooms: this.state.rooms.filter( room => room.key !== snapshot.key )  })
+    });
   }
 
   componentDidMount() {
@@ -44,6 +46,10 @@ class RoomList extends Component {
       this.setState({newRoomName: e.target.value});
     }
 
+    removeRoom(room) {
+      this.roomsRef.child(room.key).remove();
+    }
+
   render() {
     const roomForm = (
 
@@ -65,9 +71,10 @@ class RoomList extends Component {
     )
 
     let room_list = this.state.rooms.map( (room, index) =>
-    <a href={room.name}>
+    <a href={room.name} key={index}>
       <li key={index}>
-        {room.name}
+        <button id="Room-Names" onClick={ () => this.props.setRoom(room) } className="room-name">{ room.name }</button>
+        <button id="Delete-Button" onClick={ () => this.removeRoom(room) } className="remove remove-room-button">&times;</button>
       </li>
     </a>
     )
@@ -77,6 +84,7 @@ class RoomList extends Component {
       <div>
         <ul className="list_of_room_names" >
           {room_list}
+          <br />
           {roomForm}
         </ul>
       </div>

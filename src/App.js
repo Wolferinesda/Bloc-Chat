@@ -36,6 +36,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="sidenav">
+          <div className="header"> Bloc Chat </div>
           <RoomList
             firebase={firebase}
             activeRoom={this.activeRoom}
@@ -44,6 +45,7 @@ class App extends Component {
         <div className="messages">
           <MessageList
             firebase={firebase}
+            activeRoom={this.activeRoom}
           />
         </div>
       </div>
