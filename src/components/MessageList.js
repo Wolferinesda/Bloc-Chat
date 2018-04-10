@@ -37,10 +37,10 @@ class RoomList extends Component{
 
     return(
       <div>
-      Message
+
       </div>
     )
   }
 }
 
-export default RoomList
+export default RoomList;
