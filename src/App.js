@@ -13,6 +13,7 @@ var config = {
   storageBucket: "bloc-chat-room-25c2c.appspot.com",
   messagingSenderId: "648503535304"
 };
+
 firebase.initializeApp(config);
 
 class App extends Component {
