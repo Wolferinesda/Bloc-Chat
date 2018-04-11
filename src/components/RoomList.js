@@ -36,19 +36,23 @@ class RoomList extends Component {
     }
   }
 
+  setRoom(room){
+    this.props.activeRoom(room);
+  }
+
   deleteRoom(e){
     e.preventDefault();
     const room = this.props.firebase.database().ref("rooms");
     room.remove();
   }
 
-    handleChange(e) {
-      this.setState({newRoomName: e.target.value});
-    }
+  handleChange(e) {
+    this.setState({newRoomName: e.target.value});
+  }
 
-    removeRoom(room) {
-      this.roomsRef.child(room.key).remove();
-    }
+  removeRoom(room) {
+    this.roomsRef.child(room.key).remove();
+  }
 
   render() {
     const roomForm = (
@@ -73,8 +77,8 @@ class RoomList extends Component {
     let room_list = this.state.rooms.map( (room, index) =>
     <a href={room.name} key={index}>
       <li key={index}>
-        <button id="Room-Names" onClick={ () => this.props.setRoom(room) } className="room-name">{ room.name }</button>
-        <button id="Delete-Button" onClick={ () => this.removeRoom(room) } className="remove remove-room-button">&times;</button>
+        <button id="Room-Names" onClick={ (e) => this.setRoom(room, e) } className="room-name">{ room.name }</button>
+        <button id="Delete-Button" onClick={ (e) => this.removeRoom(room) } className="remove remove-room-button">&times;</button>
       </li>
     </a>
     )

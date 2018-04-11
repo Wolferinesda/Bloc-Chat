@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class RoomList extends Component{
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       username: "",
@@ -17,14 +17,14 @@ class RoomList extends Component{
   }
 
   componentDidMount() {
-    this.messagesRef.on('value', snapshot => {
+    this.messagesRef.on('child_added', snapshot => {
       const messageChanges = [];
       snapshot.forEach((message) => {
         messageChanges.push({
           key: message.key,
           username: message.val().username,
           content: message.val().content,
-          sentAt: message.val().sentAt,
+          sentAt: firebase.database.ServerValue.TIMESTAMP
           updatedTime : message.val().updatedTime
         });
       }
