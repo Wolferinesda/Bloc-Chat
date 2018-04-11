@@ -13,7 +13,8 @@ class RoomList extends Component{
       newMessage: ""
     };
 
-    this.messagesRef = this.props.firebase.database().ref('messages' + this.props.activeRoom);
+  this.messagesRef = this.props.firebase.database().ref('messages').orderByChild(this.state.roomId).equalTo(this.props.activeRoom());
+
   }
 
   componentDidMount() {
@@ -24,15 +25,17 @@ class RoomList extends Component{
           key: message.key,
           username: message.val().username,
           content: message.val().content,
-          sentAt: firebase.database.ServerValue.TIMESTAMP
-          updatedTime : message.val().updatedTime
+          sentAt: firebase.database.ServerValue.TIMESTAMP,
+          updatedTime: message.val().updatedTime
         });
       }
       this.setState({ messages: messageChanges});
     });
+
   }
 
   render() {
+
 
     let message_list = this.state.messages.map( (message, index) =>
       <p className="message-username">{message.username}</p>
@@ -48,4 +51,4 @@ class RoomList extends Component{
   }
 }
 
-export default RoomList;
+export default MessageList;
