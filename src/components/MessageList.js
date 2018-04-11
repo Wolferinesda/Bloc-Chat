@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class RoomList extends Component{
+class MessageList extends Component{
 
   constructor(props) {
     super(props);
@@ -28,14 +28,12 @@ class RoomList extends Component{
           sentAt: firebase.database.ServerValue.TIMESTAMP,
           updatedTime: message.val().updatedTime
         });
-      }
+      });
       this.setState({ messages: messageChanges});
     });
-
   }
 
   render() {
-
 
     let message_list = this.state.messages.map( (message, index) =>
       <p className="message-username">{message.username}</p>
