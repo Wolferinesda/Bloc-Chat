@@ -37,7 +37,7 @@ class RoomList extends Component {
   }
 
   setRoom(room){
-    this.props.activeRoom(room);
+    this.props.setActiveRoom(room);
   }
 
   deleteRoom(e){

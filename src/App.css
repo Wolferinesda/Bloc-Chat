@@ -3,6 +3,8 @@
   color: black;
   font-size: 18px;
 }
+
+
 .sidenav {
     height: 100%; /* Full-height: remove this if you want "auto" height */
     width: 250px; /* Set the width of the sidebar */
@@ -13,6 +15,37 @@
     background-color: #7FDBFF; /* Black */
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 20px;
+}
+
+#message_content {
+  padding-left: 260px;
+	position: relative;
+	background: #00aabb;
+	border-radius: .4em;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  background-color: #A8DDFD;
+  font: 400 .9em cursive, sans-serif;
+  border: 1px solid #97C6E3;
+  border-radius: 10px;
+}
+
+#send{
+  position:absolute;
+    transition: .5s ease;
+    top: 20%;
+    right: 33.5%;
+}
+
+#creating_message{
+bottom:10px;
+position: fixed;
+text-align: center;
+width:90%;
+height:5%;
+outline:none;
+resize: none;
+border:none;
 }
 
 .header {
