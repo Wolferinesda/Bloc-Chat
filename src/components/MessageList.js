@@ -25,18 +25,7 @@ class MessageList extends Component{
     });
   }
 
-  createMessage(e){
-    e.preventDefault();
-    let newContent = this.refs.messageOfRoom.value;
-    let newRoomId = this.props.setActiveRoom;
-    let newSentAt = this.props.firebase.database.ServerValue.TIMESTAMP;
 
-    this.messagesRef.push({
-        content: newContent,
-        roomId: newRoomId,
-        sentAt: newSentAt
-    });
-  }
 
   render() {
 
@@ -52,20 +41,6 @@ class MessageList extends Component{
       <div>
         <div id="message_content">
           {message_list}
-        </div>
-        <div id= "creating_message">
-          <form onSubmit={ this.createMessage.bind(this) } >
-            <label className="newMessageLabel">Create a new message: </label>
-            <textarea
-              ref="messageOfRoom"
-              placeholder="Enter Message"
-            />
-
-            <input id="send"
-              type="submit"
-              value="Send"
-            />
-          </form>
         </div>
       </div>
     )
