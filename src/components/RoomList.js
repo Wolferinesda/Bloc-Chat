@@ -20,6 +20,7 @@ class RoomList extends Component {
       const room = snapshot.val();
       room.key = snapshot.key;
       this.setState({ rooms: this.state.rooms.concat( room ) })
+      console.log(this.state.rooms);
     });
   }
 
@@ -78,14 +79,11 @@ class RoomList extends Component {
     let room_list = this.state.rooms.map( (room, index) =>
     <a href={room.name} key={index}>
       <li key={index}>
-        <button id="Room-Names" onClick={ ()=> this.setRoom(room.key) } className="room-name">{ room.name }</button>
+        <button id="Room-Names" onClick={ ()=> this.setRoom(room) } className="room-name">{ room.name }</button>
         <button id="Delete-Button" onClick={ (e) => this.removeRoom(room) } className=" remove-room-button">&times;</button>
       </li>
-
-
     </a>
     )
-
 
     return (
       <div>
