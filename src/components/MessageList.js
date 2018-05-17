@@ -30,6 +30,8 @@ class MessageList extends Component{
           <p className="message-sentAt">{message.sentAt}</p>
         </div>
     );
+    {    console.log(this.props.currentRoom)
+}
 
     return (
       <div>
