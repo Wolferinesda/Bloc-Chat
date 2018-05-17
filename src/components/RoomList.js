@@ -47,6 +47,7 @@ class RoomList extends Component {
   }
 
   handleChange(e) {
+    e.preventDefault();
     this.setState({newRoomName: e.target.value});
   }
 
@@ -77,8 +78,8 @@ class RoomList extends Component {
     let room_list = this.state.rooms.map( (room, index) =>
     <a href={room.name} key={index}>
       <li key={index}>
-        <button id="Room-Names" onClick={ (e) => this.setRoom(room, e) } className="room-name">{ room.name }</button>
-        <button id="Delete-Button" onClick={ (e) => this.removeRoom(room) } className="remove remove-room-button">&times;</button>
+        <button id="Room-Names" onClick={ ()=> this.setRoom(room.key) } className="room-name">{ room.name }</button>
+        <button id="Delete-Button" onClick={ (e) => this.removeRoom(room) } className=" remove-room-button">&times;</button>
       </li>
 
 
