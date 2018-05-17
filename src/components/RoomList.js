@@ -39,7 +39,6 @@ class RoomList extends Component {
   setRoom(room, e){
     e.preventDefault();
     this.props.setActiveRoom(room);
-    console.log(room);
   }
 
   deleteRoom(e){
