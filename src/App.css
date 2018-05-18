@@ -2,6 +2,7 @@
   text-align: left;
   color: black;
   font-size: 18px;
+  padding-left: 230px;
 }
 
 
@@ -17,17 +18,46 @@
     padding-top: 20px;
 }
 
+#currentUser{
+  text-align: center;
+  margin-left: 10px;
+  margin-right: 10px;
+  color:white;
+}
+
+#logIn, #logOut{
+  color:grey;
+  font-size: 25px;
+}
+
+#logIn:hover, #logOut:hover{
+  background-color: #f44336;
+  color: white;
+  font-size:25px;
+}
+
+.userButtons{
+  position:fixed;
+  display: inline;
+  right: 0%;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
 #message_content {
-  padding-left: 260px;
-	position: relative;
+	position:relative;
 	background: #00aabb;
 	border-radius: .4em;
   margin-left: 20px;
   margin-bottom: 10px;
   background-color: #A8DDFD;
   font: 400 .9em cursive, sans-serif;
-  border: 1px solid #97C6E3;
   border-radius: 10px;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  top:36px;
 }
 
 #send{
