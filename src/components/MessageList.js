@@ -5,10 +5,15 @@ class MessageList extends Component{
   constructor(props) {
     super(props);
     this.state = {
+      newContent: "",
       messages: []
     };
 
     this.messagesRef = this.props.firebase.database().ref("messages");
+    this.handleChange = this.handleChange.bind(this);
+    this.createMessage = this.createMessage.bind(this);
+
+
   }
 
   componentDidMount() {
@@ -16,9 +21,28 @@ class MessageList extends Component{
       const message = snapshot.val();
       message.key = snapshot.key;
       this.setState({ messages: this.state.messages.concat( message ) })
+      console.log(this.state.newMessage);
     });
   }
 
+  createMessage(e){
+    e.preventDefault();
+    if (this.state.newContent === "") {
+      alert('Message field cannot be empty');
+    } else {
+      this.messagesRef.push({
+        content: this.state.newContent,
+        roomId: this.props.currentRoom,
+        sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
+      });
+      e.target.reset();
+    }
+  }
+
+  handleChange(e) {
+    e.preventDefault();
+    this.setState({newContent: e.target.value});
+  }
 
   render() {
 
@@ -28,6 +52,7 @@ class MessageList extends Component{
           <p className="message-username">{message.username}</p>
           <p className="message-content">{message.content}</p>
           <p className="message-sentAt">{message.sentAt}</p>
+          <br />
         </div>
     );
 
@@ -36,6 +61,20 @@ class MessageList extends Component{
         <div id="message_content">
           {message_list}
           {console.log(this.state)}
+        </div>
+        <div id= "creating_message">
+          <form onSubmit={ this.createMessage } >
+            <label className="newMessageLabel">Create a new message: </label>
+            <textarea
+              ref="messageOfRoom"
+              placeholder="Enter Message"
+              onChange={this.handleChange}
+            />
+            <input id="send"
+              type="submit"
+              value="Send"
+            />
+          </form>
         </div>
       </div>
     )
