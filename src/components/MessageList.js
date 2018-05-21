@@ -14,6 +14,7 @@ class MessageList extends Component{
     this.createMessage = this.createMessage.bind(this);
 
 
+
   }
 
   componentDidMount() {
@@ -30,12 +31,22 @@ class MessageList extends Component{
     if (this.state.newContent === "") {
       alert('Message field cannot be empty');
     } else {
+      var date = new Date()
       this.messagesRef.push({
+        username: this.props.currentUser.displayName,
         content: this.state.newContent,
         roomId: this.props.currentRoom,
-        sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
+        sentAt: [
+                    date.getMonth()+1 + "/",
+                    date.getDate()+ "/",
+                    date.getFullYear() + "  ",
+                    date.getHours() + ":",
+                    date.getMinutes()+ ":",
+                    date.getSeconds(),
+                ]
       });
       e.target.reset();
+      this.setState({newContent: ""});
     }
   }
 

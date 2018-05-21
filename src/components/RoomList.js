@@ -33,6 +33,7 @@ class RoomList extends Component {
         name: this.state.newRoomName
       });
       e.target.reset();
+      this.setState({newRoomName:""});
     }
   }
 
