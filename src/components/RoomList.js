@@ -42,12 +42,6 @@ class RoomList extends Component {
     this.props.setActiveRoom(room);
   }
 
-  deleteRoom(e){
-    e.preventDefault();
-    const room = this.props.firebase.database().ref("rooms");
-    room.remove();
-  }
-
   handleChange(e) {
     e.preventDefault();
     this.setState({newRoomName: e.target.value});

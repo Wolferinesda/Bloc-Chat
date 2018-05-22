@@ -12,7 +12,9 @@ class MessageList extends Component{
     this.messagesRef = this.props.firebase.database().ref("messages");
     this.handleChange = this.handleChange.bind(this);
     this.createMessage = this.createMessage.bind(this);
-
+    this.messagesRef.on('child_removed', snapshot  => {
+      this.setState({ messages: this.state.messages.filter( message => message.key !== snapshot.key )  })
+    });
 
 
   }
@@ -33,7 +35,7 @@ class MessageList extends Component{
     } else {
       var date = new Date()
       this.messagesRef.push({
-        username: this.props.currentUser.displayName,
+        username: this.props.currentUser ? this.props.currentUser.displayName : "Guest",
         content: this.state.newContent,
         roomId: this.props.currentRoom,
         sentAt: [
@@ -55,6 +57,11 @@ class MessageList extends Component{
     this.setState({newContent: e.target.value});
   }
 
+  removeMessage(message, e) {
+    e.preventDefault();
+    this.messagesRef.child(message.key).remove();
+  }
+
   render() {
 
 
@@ -63,6 +70,7 @@ class MessageList extends Component{
           <p className="message-username">{message.username}</p>
           <p className="message-content">{message.content}</p>
           <p className="message-sentAt">{message.sentAt}</p>
+          <button id="Delete-Button" onClick={ (e) => this.removeMessage(message, e) } className=" remove-room-button">&times;</button>
           <br />
         </div>
     );
