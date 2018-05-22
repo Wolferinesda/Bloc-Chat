@@ -53,7 +53,8 @@ class RoomList extends Component {
     this.setState({newRoomName: e.target.value});
   }
 
-  removeRoom(room) {
+  removeRoom(room, e) {
+    e.preventDefault();
     this.roomsRef.child(room.key).remove();
   }
 
@@ -81,7 +82,7 @@ class RoomList extends Component {
     <a href={room.name} key={index}>
       <li key={index}>
         <button id="Room-Names" onClick={ (e)=> this.setRoom(room, e) } className="room-name">{ room.name }</button>
-        <button id="Delete-Button" onClick={ (e) => this.removeRoom(room) } className=" remove-room-button">&times;</button>
+        <button id="Delete-Button" onClick={ (e) => this.removeRoom(room, e) } className=" remove-room-button">&times;</button>
       </li>
     </a>
     )
